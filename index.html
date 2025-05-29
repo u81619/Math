@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator 4GAMER</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(145deg, #6f42c1, #8e44ad);
+      color: white;
+    }
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .display {
+      background: #2c2c54;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: right;
+      font-size: 2em;
+      margin-bottom: 20px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(6, 70px);
+      gap: 10px;
+    }
+    .btn {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+    .btn.operator {
+      background: #ff6b81;
+    }
+    .btn.equal {
+      background: #1dd1a1;
+      grid-column: span 2;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons" id="buttons">
+      <button class="btn operator" onclick="clearDisplay()">C</button>
+      <button class="btn operator" onclick="append('(')">(</button>
+      <button class="btn operator" onclick="append(')')">)</button>
+      <button class="btn operator" onclick="append('+')">+</button>
+      <button class="btn operator" onclick="append('-')">-</button>
+      <button class="btn operator" onclick="append('*')">×</button>
+      <button class="btn operator" onclick="append('/')">÷</button>
+      <button class="btn operator" onclick="append('%')">%</button>
+      <button class="btn operator" onclick="append('**')">^</button>
+      <button class="btn operator" onclick="append('Math.sqrt(')">√</button>
+      <button class="btn operator" onclick="append('Math.cbrt(')">∛</button>
+      <button class="btn operator" onclick="append('Math.pow(')">pow(,)</button>
+      <button class="btn operator" onclick="append('Math.sin(')">sin(</button>
+      <button class="btn operator" onclick="append('Math.cos(')">cos(</button>
+      <button class="btn operator" onclick="append('Math.tan(')">tan(</button>
+      <button class="btn operator" onclick="append('Math.asin(')">asin(</button>
+      <button class="btn operator" onclick="append('Math.acos(')">acos(</button>
+      <button class="btn operator" onclick="append('Math.atan(')">atan(</button>
+      <button class="btn operator" onclick="append('Math.log(')">ln(</button>
+      <button class="btn operator" onclick="append('Math.log10(')">log₁₀(</button>
+      <button class="btn operator" onclick="append('Math.exp(')">exp(</button>
+      <button class="btn operator" onclick="append('Math.abs(')">abs(</button>
+      <button class="btn operator" onclick="append('Math.floor(')">floor(</button>
+      <button class="btn operator" onclick="append('Math.ceil(')">ceil(</button>
+      <button class="btn operator" onclick="append('Math.round(')">round(</button>
+      <button class="btn operator" onclick="append('Math.max(')">max(</button>
+      <button class="btn operator" onclick="append('Math.min(')">min(</button>
+      <button class="btn operator" onclick="append('Math.trunc(')">trunc(</button>
+      <button class="btn operator" onclick="append('Math.sign(')">sign(</button>
+      <button class="btn" onclick="append('7')">7</button>
+      <button class="btn" onclick="append('8')">8</button>
+      <button class="btn" onclick="append('9')">9</button>
+      <button class="btn" onclick="append('4')">4</button>
+      <button class="btn" onclick="append('5')">5</button>
+      <button class="btn" onclick="append('6')">6</button>
+      <button class="btn" onclick="append('1')">1</button>
+      <button class="btn" onclick="append('2')">2</button>
+      <button class="btn" onclick="append('3')">3</button>
+      <button class="btn" onclick="append('0')">0</button>
+      <button class="btn" onclick="append('.')">.</button>
+      <button class="btn" onclick="append(',')">,</button>
+      <button class="btn" onclick="backspace()">⌫</button>
+      <button class="btn equal" onclick="calculate()">=</button>
+    </div>
+    <div class="footer">© 4GAMER</div>
+  </div>  <script>
+    let display = document.getElementById('display');
+
+    function append(value) {
+      if (display.innerText === '0') {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+    }
+
+    function clearDisplay() {
+      display.innerText = '0';
+    }
+
+    function backspace() {
+      if (display.innerText.length > 1) {
+        display.innerText = display.innerText.slice(0, -1);
+      } else {
+        display.innerText = '0';
+      }
+    }
+
+    function calculate() {
+      try {
+        display.innerText = eval(display.innerText);
+      } catch {
+        display.innerText = 'Error';
+      }
+    }
+  </script></body>
+</html>
